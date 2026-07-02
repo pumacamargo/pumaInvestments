@@ -1,11 +1,11 @@
 import sys
 import json
-from webullsdkcore.client import ApiClient
+from webullsdkmdata.market_data_client import MarketDataClient
 
 def get_quote(app_key, app_secret, symbol, region="jp"):
     try:
-        api_client = ApiClient(app_key=app_key, app_secret=app_secret, region_id=region)
-        quote = api_client.quote.get_brief_quote(symbol)
+        client = MarketDataClient(app_key=app_key, app_secret=app_secret, region_id=region)
+        quote = client.get_quote(symbol=symbol)
         
         current_price = quote.get('last')
         ath = quote.get('high52week')
